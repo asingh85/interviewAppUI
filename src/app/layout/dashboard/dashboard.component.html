@@ -1,0 +1,307 @@
+<div class="row">
+        <div class="col-xl-4 col-lg-6">
+           <div class="card text-white bg-pending-new">
+              <div class="card-header">
+                 <div class="row">
+                    <div class="col col-xs-3">
+                       <i class="fa fa-spinner fa-spin fa-5x"></i>
+                    </div>
+                    <div class="col col-xs-9 text-right">
+                       <div class="d-block huge">{{pendingCount}}</div>
+                       <div class="d-block">Pending</div>
+                    </div>
+                 </div>
+              </div>
+              <div class="card-footer">
+                 <span class="float-left">View Details</span>
+                 <a (click)='togglePending()' class="float-right card-inverse">
+                        {{editedPending ? 'Hide' : 'Show'}}
+                 <span ><i class="fa fa-arrow-circle-right"></i></span>
+                 </a>
+              </div>
+           </div>
+        </div>
+
+
+
+        <div class="col-xl-4 col-lg-6">
+           <div class="card text-white bg-ack-new">
+              <div class="card-header">
+                 <div class="row">
+                    <div class="col col-xs-3">
+                       <i class="fa fa-handshake-o fa-5x"></i>
+                    </div>
+                    <div class="col col-xs-9 text-right">
+                       <div class="d-block huge" >{{ackCount}}</div>
+                       <div class="d-block">Acknowledged</div>
+                    </div>
+                 </div>
+              </div>
+              <div class="card-footer">
+                 <span class="float-left">View Details</span>
+                 <a (click)='toggleAck()' class="float-right card-inverse">
+                        {{editedAck ? 'Hide' : 'Show'}}
+                 <span ><i class="fa fa-arrow-circle-right"></i></span>
+                 </a>
+              </div>
+           </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+           <div class="card text-white bg-approved-new">
+              <div class="card-header">
+                 <div class="row">
+                    <div class="col col-xs-3">
+                       <i class="fa fa fa-thumbs-up fa-5x"></i>
+                    </div>
+                    <div class="col col-xs-9 text-right">
+                       <div class="d-block huge">{{approvedCount}}</div>
+                       <div class="d-block">Approved</div>
+                    </div>
+                 </div>
+              </div>
+              <div class="card-footer">
+                 <span class="float-left">View Details</span>
+                 <!-- <a href="editedApproved()" class="float-right card-inverse"> -->
+                    <a (click)='toggleApproved()' class="float-right card-inverse">
+                        {{editedApproved ? 'Hide' : 'Show'}}
+
+                 <span ><i class="fa fa-arrow-circle-right"></i></span>
+                 </a>
+              </div>
+           </div>
+        </div>
+     </div>
+
+  <br><br>   
+
+<!-- <list-pending *ngIf="edited">{{icandidateList}}</list-pending> -->
+
+
+<!-- <div class="row"  ng-if="myVar" *ngIf="edited"> -->
+
+<div class="row" *ngIf="editedPending" >
+        
+        <div class="col col-xl-11 col-lg-12 ">
+
+            <div class="panel panel-primary no-padding">
+                <!-- <div class="card-header">INTERVIEWERS</div> -->
+                <!-- <tr>
+                        <td colspan="8"  class="no-padding"> -->
+                                <div class="topnav bg-clr">
+                                        <a class="active" href="#home">&nbsp;</a>
+
+                                        <!--<div class="search-container">-->
+                                            <!--&lt;!&ndash; <input (keyup)="onKey($event)" class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> &ndash;&gt;-->
+                                            <!--<input [(ngModel)]='listPendingFilter' class="brdr-rds" type="text" placeholder="&nbsp;&nbsp;Search..." name="search">-->
+                                            <!--&lt;!&ndash; <input (input)="onKey(search.value)"  class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> &ndash;&gt;-->
+                                            <!--&nbsp;&nbsp;-->
+                                        <!--</div>-->
+                                </div>
+                        <!-- </td>
+                    </tr> -->
+                <table class="table outer-brdr table-hover">
+                    <thead>
+                    <tr >
+                        <th class="hght">First Name</th>
+                        <th class="hght">Last Name</th>
+                        <th class="hght">Technology</th>
+                        <th class="hght">Experience</th>
+                        <th class="hght">Acknowledge</th>
+                        <!-- <th class="outer-brdr-tbl hght"></th> -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let candidate of iPendingcandidateList'>
+
+                            <td hidden >{{candidate.id}} </td>
+                            <td class="hght_td">{{candidate.firstName}}</td>
+                            <td class="hght_td">{{candidate.lastName}}</td>
+                            <td class="hght_td">{{candidate.technologyStack}}</td> 
+                            <td class="hght_td">{{candidate.experience}}</td> 
+                            <td class="outer-brdr-tbl hght_td">
+                                <a data-toggle="tooltip"  title="Acknowledge" (click)="acknowledge(candidate)" class="fa fa-check-circle fa-2x" style="color: green" aria-hidden="true"></a>
+                                &nbsp; &nbsp;
+                             </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        <p></p>
+
+</div>
+
+</div>
+
+
+<div class="row" *ngIf="editedAck" >
+        
+        <div class="col col-xl-11 col-lg-12 ">
+
+            <div class="panel panel-primary no-padding">
+                <!-- <div class="card-header">INTERVIEWERS</div> -->
+                <!-- <tr>
+                        <td colspan="8"  class="no-padding"> -->
+                                <div class="topnav bg-clr">
+                                        <a class="active" href="#home">&nbsp;</a>
+
+                                        <!--<div class="search-container">-->
+                                            <!--&lt;!&ndash; <input (keyup)="onKey($event)" class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> &ndash;&gt;-->
+                                            <!--<input [(ngModel)]='listPendingFilter' class="brdr-rds" type="text" placeholder="&nbsp;&nbsp;Search..." name="search">-->
+                                            <!--&lt;!&ndash; <input (input)="onKey(search.value)"  class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> &ndash;&gt;-->
+                                            <!--&nbsp;&nbsp;-->
+                                        <!--</div>-->
+                                </div>
+                        <!-- </td>
+                    </tr> -->
+                <table class="table outer-brdr table-hover">
+                    <thead>
+                    <tr >
+                        <th class="hght">First Name</th>
+                        <th class="hght">Last Name</th>
+                        <th class="hght">Technology</th>
+                        <th class="hght">Experience</th>
+                        <th class="hght">Actions</th>
+                        <!-- <th class="outer-brdr-tbl hght"></th> -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let candidate of iAckcandidateList'>
+
+                            <td hidden >{{candidate.id}} </td>
+                            <td class="hght_td">{{candidate.firstName}}</td>
+                            <td class="hght_td">{{candidate.lastName}}</td>
+                            <td class="hght_td">{{candidate.technologyStack}}</td> 
+                            <td class="hght_td">{{candidate.experience}}</td> 
+                            <td class="outer-brdr-tbl hght_td">
+                                <a data-toggle="tooltip"  title="Approve" (click)="openModal(mTemplate,candidate,'M')" class="fa fa-check-circle fa-2x"  style="color: green"  aria-hidden="true"></a>
+                                <!-- <a data-toggle="tooltip"  title="Approve" (click)="approveInterview(candidate)" class="fa fa-check-circle fa-2x"  style="color: green"  aria-hidden="true"></a> -->
+                                &nbsp; 
+                                <a data-toggle="tooltip"  title="Reject"  (click)="rejectInterview(candidate)" class="fa fa-times-circle fa-2x " style="color: red" aria-hidden="true">
+                                &nbsp;</a>
+                                <a data-toggle="tooltip"  title="Next Round" (click)="openModal(iTemplate,candidate,'I')" class="fa fa-arrow-circle-right fa-2x" style="color:teal" 
+                                aria-hidden="true"></a>
+                                
+                             </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <ng-template #iTemplate>
+                    <div class="modal-content">
+                     <div class="modal-header">
+                            <div class="search-container">             
+                                    <!-- <input (keyup)="onKey($event)" class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> -->
+                                    <input [(ngModel)]='listFilter' class="brdr-rds" type="text" placeholder="&nbsp;&nbsp;Search Interviewer..." name="search">
+                                    <!-- <input (input)="onKey(search.value)"  class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> -->
+                                    &nbsp;&nbsp;                 
+                            </div>                       
+                                
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                         <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+
+                    <div >                   
+                        <div *ngFor='let interviewer of interviewers | filter:listFilter'>
+                            <div *ngIf='listFilter.length > 0'>
+                                    <table class="table outer-brdr table-sm table-hover">
+                                        <tr (click)="chooseInterviewer(interviewer)">
+                                            <td hidden>{{interviewer.id}}</td>
+                                            <td>{{interviewer.firstName }}  ({{interviewer.employeeId}})</td>
+                                        </tr>
+                                    </table>
+                            </div>
+                            <div *ngElse>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                </ng-template>
+
+                <ng-template #mTemplate>
+                        <div>
+                         <div class="modal-header"  >
+                                <div >             
+                                        <!-- <input (keyup)="onKey($event)" class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> -->
+                                        <input [(ngModel)]='listFilter' class="brdr-rds" type="text" placeholder="&nbsp;&nbsp;Search Manager..." >
+                                        <!-- <input (input)="onKey(search.value)"  class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> -->
+                                        &nbsp;&nbsp;                 
+                                </div>                       
+                                    
+                            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                             <span aria-hidden="true">&times;</span>
+                             </button>
+                        </div>
+    
+                        <div >                   
+                                <div *ngFor='let interviewer of interviewers | filter:listFilter'>
+                                    <div *ngIf='listFilter.length > 0'>
+                                            <table class="table outer-brdr table-sm table-hover">
+                                                <tr (click)="chooseManager(interviewer)">
+                                                    <td hidden>{{interviewer.id}}</td>
+                                                    <td>{{interviewer.firstName }}  ({{interviewer.employeeId}})</td>
+                                                </tr>
+                                            </table>
+                                    </div>
+                                    <div *ngElse>
+                                    </div>
+                                </div>
+                            </div>  
+                        
+                    </div>
+                    </ng-template>
+        </div>
+        <p></p>
+
+</div>
+
+</div>
+
+<div class="row" *ngIf="editedApproved" >
+        
+    <div class="col col-xl-11 col-lg-12 ">
+
+        <div class="panel panel-primary no-padding">
+            <!-- <div class="card-header">INTERVIEWERS</div> -->
+            <!-- <tr>
+                    <td colspan="8"  class="no-padding"> -->
+                            <div class="topnav bg-clr">
+                                    <a class="active" href="#home">&nbsp;</a>
+
+                                    <!--<div class="search-container">-->
+                                        <!--&lt;!&ndash; <input (keyup)="onKey($event)" class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> &ndash;&gt;-->
+                                        <!--<input [(ngModel)]='listPendingFilter' class="brdr-rds" type="text" placeholder="&nbsp;&nbsp;Search..." name="search">-->
+                                        <!--&lt;!&ndash; <input (input)="onKey(search.value)"  class="brdr-rds" type="text" name="search" placeholder="&nbsp;&nbsp;Search..."> &ndash;&gt;-->
+                                        <!--&nbsp;&nbsp;-->
+                                    <!--</div>-->
+                            </div>
+                    <!-- </td>
+                </tr> -->
+            <table class="table outer-brdr table-hover">
+                <thead>
+                <tr >
+                    <th class="hght">First Name</th>
+                    <th class="hght">Last Name</th>
+                    <th class="hght">Technology</th>
+                    <th class="hght">Experience</th>
+                    <!-- <th class="outer-brdr-tbl hght"></th> -->
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let candidate of iApprovedCandidateList'>
+
+                        <td hidden >{{candidate.id}} </td>
+                        <td class="hght_td">{{candidate.firstName}}</td>
+                        <td class="hght_td">{{candidate.lastName}}</td>
+                        <td class="hght_td">{{candidate.technologyStack}}</td> 
+                        <td class="hght_td">{{candidate.experience}}</td>         
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <p></p>
+
+</div>
+
+</div>
